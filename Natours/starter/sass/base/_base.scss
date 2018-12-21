@@ -1,0 +1,47 @@
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+html {
+    font-size: 62.5%; //1rem = 10px; 10px/16px = 62.5%
+    
+
+    //width < 1200  調換順序tab-land,tab-port
+    //避免同時小於600px時，同時符合2條件，使下方的程式設定
+    //覆蓋了上方的
+    @include respond(tab-land) { 
+        font-size: 56.25%; // 1 rem = 9px, 9/16 = 56.25%
+    }
+
+    @include respond(tab-port) {//width < 900
+        font-size: 50%; //1 rem = 8px, 8/16 = 50%
+    }
+
+    // @include respond(phone) {
+    //     font-size: 30%; //0.3 * 16 = 4.8, 1 rem = 4.8px
+    // }
+
+    @include respond(big-desktop) {
+        font-size: 75%; // 1rem = 12, 12/16 = 75%  
+    }
+
+}
+
+body {
+    box-sizing: border-box;
+    padding: 3rem;
+
+    @include respond(tab-port) {
+        padding: 0;
+    }
+}
+
+::selection {
+    background-color: $color-primary;
+    color: $color-white;
+}
+
